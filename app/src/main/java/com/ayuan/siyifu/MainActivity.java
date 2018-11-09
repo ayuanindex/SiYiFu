@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                                 for (int j = -20; j < 20; j++) {
                                     int x = (int) event.getX() + i;
                                     int y = (int) event.getY() + j;
-                                    copy.setPixel(x, y, Color.TRANSPARENT);
+                                    if (20 >= Math.sqrt(i * i + j * j)) {
+                                        copy.setPixel(x, y, Color.TRANSPARENT);
+                                    }
                                 }
                             }
                             imageView.setImageBitmap(copy);
