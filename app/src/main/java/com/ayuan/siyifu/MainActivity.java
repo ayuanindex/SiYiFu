@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,12 +44,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_MOVE://移动事件
-                        int x = (int) event.getX() % copy.getWidth();
-                        int y = (int) event.getY() % copy.getHeight();
-//                        int x = (int) event.getX();
-//                        int y = (int) event.getY();
-                        copy.setPixel(x, y, Color.TRANSPARENT);
-                        imageView.setImageBitmap(copy);
+//                        int x = (int) event.getX() % copy.getWidth();
+//                        int y = (int) event.getY() % copy.getHeight();
+                        try {
+                            for (int i = -20; i < 20; i++) {
+                                for (int j = -20; j < 20; j++) {
+                                    int x = (int) event.getX() + i;
+                                    int y = (int) event.getY() + j;
+                                    copy.setPixel(x, y, Color.TRANSPARENT);
+                                }
+                            }
+                            imageView.setImageBitmap(copy);
+                        } catch (Exception e) {
+                            Log.i(TAG, "有问题");
+                        }
                         break;
                 }
                 return true;
